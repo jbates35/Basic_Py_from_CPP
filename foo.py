@@ -1,2 +1,2 @@
-def bar():
-    return "Hello world from python"
+def bar(x):
+    return x+1

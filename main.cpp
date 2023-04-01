@@ -30,8 +30,12 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    int x = 5;
+
     //Create empty tuple
-    PyObject *pArgs = PyTuple_New(0);
+    PyObject *pArgs = PyTuple_New(1);
+    PyTuple_SetItem(pArgs, 0, PyLong_FromLong(x));
+
     PyObject *pRetVal = PyObject_CallObject(pFunc, pArgs);
 
     Py_DECREF(pArgs);
@@ -44,10 +48,10 @@ int main(int argc, char *argv[])
     }    
 
     //Now parse through the return string
-    char *pStr = NULL;
-    if (PyArg_Parse(pRetVal, "s", &pStr))
+    int returnValue;
+    if (PyArg_Parse(pRetVal, "i", &returnValue))
     {
-        cout << "Output string: " << pStr << "\n";
+        cout << "Output string: " << returnValue << "\n";
     }    
     else
     {
